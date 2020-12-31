@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Scope</title>
+</head>
+
+<body>
+	<a href="/examples/">Go back</a>
+	<p>
+		<em>Abre la consola</em>
+	</p>
+	<script>
+		/* GLOBAL SCOPE */
+		var message = 'Hello Platzi!';
+
+		/* FUNCTION SCOPE */
+		function printNumbers() {
+			for (var i = 0; i < 10; i++) {
+				/* function eventuallyPrintNumber(n) {
+					setTimeout(function() { console.log(n); }, 100);
+				}
+
+				eventuallyPrintNumber(i); */
+				setTimeout(function() { console.log(i); }, 100);
+			}
+		}
+
+		function printNumbers2() {
+			for (let i = 0; i < 10; i++) {
+				setTimeout(function() { console.log(i); }, 100);
+			}
+		}
+
+		printNumbers();
+		printNumbers2();
+
+		/* MODULE SCOPE */
+		//Example inside the project
+ 	</script>
+</body>
+
+</html>
