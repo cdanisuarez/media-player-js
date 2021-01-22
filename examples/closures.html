@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Closure</title>
+</head>
+
+<body>
+	<a href="/examples/">Go back</a>
+	<p>
+		<em>Abre la consola</em>
+	</p>
+	<script>
+		/* Aquí el problema es que la variable color, quedo disponible globalmente */
+		// let color = 'green';
+
+		// function printColor() {
+		// 	console.log(color);
+		// }
+		
+		// printColor();
+
+		/* IIFE: Immediately Invoque Function Expression */ 
+		//Se saco el codigo del entorno global y ya color no forma parte de un scope global
+		(function() {
+			let color = 'green';
+
+			function printColor() {
+				console.log(color);
+			}
+			
+			printColor();
+		})();
+
+		/* CLOSURE */
+		function makeColor(color) {
+			let colorMessage = `The color is ${color}`;
+			return function() {
+				console.log(colorMessage);
+			}
+		}
+
+		let greenColorPrinter = makeColor('green');
+
+		/* CLOSURE 2 */
+		//Como normalmente declaramos las variables y podemos acceder a ellas.
+		// const counter = {
+		// 	count: 3,
+		// };
+
+		// console.log('counter.count :>> ', counter.count);
+		// counter.count = 99;
+		// console.log('counter.count :>> ', counter.count);
+
+		//Esto es closure, simular una variable privada, en este cas no se puede acceder a count
+		function makeCounter(n) {
+			let count = n;
+			return {
+				increase: function() { count = count + 1; },
+				decrease: function() { count = count - 1; },
+				getCount: function() { return count; },
+			};
+		}
+
+		let counter = makeCounter(7);
+		console.log('counter :>> ', counter.getCount());
+		counter.increase();
+		console.log('counter :>> ', counter.getCount());
+		counter.decrease();
+		console.log('counter :>> ', counter.getCount());
+ 	</script>
+</body>
+
+</html>
