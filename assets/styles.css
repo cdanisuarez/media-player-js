@@ -47,7 +47,10 @@ main {
 .controls .btn {
   margin: 0 3px;
   padding: 8px;
-  border: 1px solid #d6cccc;
+  border: 1px solid #f5576c;
+  background: #f5576c;
+  color: white;
+  border-radius: 5px;
 }
 
 .controls .btn:hover {
