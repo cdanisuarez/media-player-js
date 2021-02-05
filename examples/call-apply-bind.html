@@ -17,7 +17,7 @@
     <li><button class="call-to-action">¡Nunca parar de aprender!</button></li>
   </ul>
   <script>
-    //Establecer this usando call
+    /* Establecer this usando call */
     function saludar() {
       console.log(`Hola. Soy ${this.name} ${this.lastname}`)
     }
@@ -25,47 +25,50 @@
     const person = { name: 'Daniela', lastname: 'Suarez' };
     saludar.call(person);
 
-    //Establecer this usando call y pasar argumentos a la función
+    /* Establecer this usando call y pasar argumentos a la función */
     function caminar(metros, direccion) {
       console.log(`${this.name} camina ${metros} metros hacia el ${direccion}`);
     }
 
     caminar.call(person, 400, 'norte');
 
-    //apply tiene la misma funcionalidad de call solo que lo hace de manera diferente
-    //Establece this usando apply y pasar argumentos a la funcion
+    /* apply tiene la misma funcionalidad de call solo que lo hace de manera diferente.
+    Establece this usando apply y pasar argumentos a la funcion */
     const values = [500, 'sur'];
     caminar.apply(person, values);
 
     /** C: comma - A: array */
 
-    //Establecer this en una nueva funcion usando bind
+    /* Establecer this en una nueva funcion usando bind */
     const pepita = {name:'Pepita', lastname: 'Perez'};
     const pepitaSaluda = saludar.bind(pepita);
     pepitaSaluda();
     
-    //Usando bind y pasando parametros
-    /*
-    //Primera manera
-    const pepitaCamina = caminar.bind(pepita);
-    pepitaCamina(1000, 'oeste');
-    */
+    /* Usando bind y pasando parametros */
+    /* Primera manera */
+    // const pepitaCamina = caminar.bind(pepita);
+    // pepitaCamina(1000, 'oeste');
 
-    /*
-    //Segunda manera
-    const pepitaCamina = caminar.bind(pepita, 1000, 'oeste');
-    pepitaCamina();
-    */
+    /* Segunda manera */
+    // const pepitaCamina = caminar.bind(pepita, 1000, 'oeste');
+    // pepitaCamina();
 
-    //Tercera manera: tecnica llamada currying
-    const pepitaCamina = caminar.bind(pepita, 1000);
-    pepitaCamina('oeste');
+    /* Tercera manera: tecnica llamada currying */
+    // const pepitaCamina = caminar.bind(pepita, 1000);
+    // pepitaCamina('oeste');
     
-    //Cuando es util usar cada uno de estos métofos
-    // const buttons = document.getElementsByClassName('call-to-action');
-    // buttons.forEach(element => {
-    //   butto
-    // });
+    /* Cuando es util usar cada uno de estos métofos */
+    const buttons = document.getElementsByClassName('call-to-action');
+    
+    // Esto inicialmente no funciona ya que buttons es un NodeList
+    // buttons.forEach(button => {
+    //   button.onclick = () => alert('Nunca pares de aprender!');
+    // })
+
+    //Lo que hicimos fue llamar el método forEach, pasarle un nuevo this y como parametro una función en donde cada button de buttons o element de elements cada dez que se le haga click ejecute un alert
+    Array.prototype.forEach.call(buttons, button => {
+      button.onclick = () => alert('Nunca pares de aprender!');
+    });
   </script>
 </body>
 </html>
