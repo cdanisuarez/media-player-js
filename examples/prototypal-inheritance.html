@@ -15,7 +15,28 @@
     </p>
 
     <script>
-      
+      function Hero(name) {
+        this.name = name
+      }
+
+      Hero.prototype.saludar = function() {
+        console.log(`Hola, soy ${this.name}`);
+      }
+
+      const zelda = new Hero('Zelda');
+
+      /* Propiedades de la instancia */
+      console.log('Name: ', zelda.name);
+
+      /* Propiedades de la 'clase' */
+      console.log('Saludar (no instanciada): ', zelda.saludar);
+
+      /* Propiedades heredadas */
+      console.log('toString', zelda.toString);
+
+      /* hasOwnProperty (determina si algo le pertenece directamente a un objeto o si lo toma de herencia) */
+      console.log('zelda.hasOwnProperty(name)', zelda.hasOwnProperty('name'));
+      console.log('zelda.hasOwnProperty(saludar)', zelda.hasOwnProperty('saludar'));
     </script>
   </body>
 
